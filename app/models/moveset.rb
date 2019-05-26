@@ -1,0 +1,2 @@
+class Moveset < ApplicationRecord
+end

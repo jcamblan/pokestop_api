@@ -1,0 +1,2 @@
+class ResearchStep < ApplicationRecord
+end

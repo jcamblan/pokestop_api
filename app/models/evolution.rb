@@ -1,0 +1,2 @@
+class Evolution < ApplicationRecord
+end
