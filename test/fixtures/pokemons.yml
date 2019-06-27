@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: pokemons
+#
+#  id             :integer          not null, primary key
+#  num            :string
+#  generation_id  :bigint
+#  candy_id       :integer
+#  candy_distance :integer
+#  pokedex_entry  :text
+#  comment        :text
+#  flee_rate      :decimal(, )
+#  capture_rate   :decimal(, )
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 # This model initially had no columns defined. If you add columns to the
