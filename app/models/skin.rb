@@ -2,23 +2,29 @@
 
 # == Schema Information
 #
-# Table name: researches
+# Table name: skins
 #
 #  id         :integer          not null, primary key
-#  available  :boolean          default(FALSE)
+#  pokemon_id :integer          not null
+#  gender     :string           not null
+#  kind       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Research < ApplicationRecord
+class Skin < ApplicationRecord
   # == Constants ===============================================================
   # == Attributes ==============================================================
   # == Extensions ==============================================================
   # == Relationships ===========================================================
 
-  translates :name, :description, touch: true
+  belongs_to :pokemon
 
   # == Validations =============================================================
+
+  enumerize :gender, in: %i[male female]
+  enumerize :kind, in: %i[normal shiny]
+
   # == Scopes ==================================================================
   # == Callbacks ===============================================================
   # == Class Methods ===========================================================

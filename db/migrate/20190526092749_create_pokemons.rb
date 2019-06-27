@@ -4,10 +4,11 @@
 class CreatePokemons < ActiveRecord::Migration[6.0]
   def change # rubocop:disable Metrics/MethodLength
     create_table :pokemons do |t|
-      t.string  :pkdx
-      t.bigint  :generation_id
+      t.string  :nid, null: false
+      t.bigint  :generation_id, null: false
       t.integer :candy_id
       t.integer :candy_distance
+      t.string  :kind, default: :normal
       t.text    :pokedex_entry
       t.text    :comment
       t.decimal :flee_rate

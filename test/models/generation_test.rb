@@ -5,6 +5,8 @@
 # Table name: generations
 #
 #  id         :integer          not null, primary key
+#  uid        :integer
+#  available  :boolean
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

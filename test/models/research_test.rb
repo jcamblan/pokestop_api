@@ -5,6 +5,7 @@
 # Table name: researches
 #
 #  id         :integer          not null, primary key
+#  available  :boolean          default(FALSE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

@@ -64,6 +64,8 @@ GEM
     builder (3.2.3)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
+    enumerize (2.3.1)
+      activesupport (>= 3.2)
     erubi (1.8.0)
     ffi (1.11.1)
     globalid (0.4.2)
@@ -162,6 +164,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   bootsnap (>= 1.4.2)
+  enumerize
   globalize
   listen (>= 3.0.5, < 3.2)
   paper_trail

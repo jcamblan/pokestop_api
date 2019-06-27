@@ -5,10 +5,11 @@
 # Table name: pokemons
 #
 #  id             :integer          not null, primary key
-#  num            :string
-#  generation_id  :bigint
+#  nid            :string           not null
+#  generation_id  :bigint           not null
 #  candy_id       :integer
 #  candy_distance :integer
+#  kind           :string           default("normal")
 #  pokedex_entry  :text
 #  comment        :text
 #  flee_rate      :decimal(, )
@@ -18,5 +19,24 @@
 #
 
 class Pokemon < ApplicationRecord
+  # == Constants ===============================================================
+  # == Attributes ==============================================================
+  # == Extensions ==============================================================
+  # == Relationships ===========================================================
+
   translates :name, :description, touch: true
+
+  has_many :evolutions, foreign_key: :from_pokemon_id, dependent: :destroy
+  has_one :prevolution, class_name: 'Evolution', foreign_key: :to_pokemon_id
+  has_one :previous_form, class_name: 'Pokemon',
+                          through: :prevolution,
+                          source: :from_pokemon
+
+  has_many :skins, dependent: :destroy
+
+  # == Validations =============================================================
+  # == Scopes ==================================================================
+  # == Callbacks ===============================================================
+  # == Class Methods ===========================================================
+  # == Instance Methods ========================================================
 end

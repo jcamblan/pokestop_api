@@ -5,10 +5,11 @@
 # Table name: pokemons
 #
 #  id             :integer          not null, primary key
-#  num            :string
-#  generation_id  :bigint
+#  nid            :string           not null
+#  generation_id  :bigint           not null
 #  candy_id       :integer
 #  candy_distance :integer
+#  kind           :string           default("normal")
 #  pokedex_entry  :text
 #  comment        :text
 #  flee_rate      :decimal(, )
