@@ -10,7 +10,7 @@ gem 'globalize'
 gem 'paper_trail'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 6.0.0.rc1'
-gem 'sqlite3', '~> 1.4'
+gem 'pg'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
