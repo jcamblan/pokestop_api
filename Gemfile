@@ -9,9 +9,9 @@ gem 'activerecord-import'
 gem 'enumerize'
 gem 'globalize'
 gem 'paper_trail'
+gem 'pg'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 6.0.0.rc1'
-gem 'pg'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
