@@ -4,14 +4,13 @@
 #
 # Table name: pokemons
 #
-#  id             :integer          not null, primary key
+#  id             :bigint           not null, primary key
 #  nid            :string           not null
 #  generation_id  :bigint           not null
 #  candy_id       :integer
 #  candy_distance :integer
 #  kind           :string           default("normal")
-#  pokedex_entry  :text
-#  comment        :text
+#  alolan_form_id :bigint
 #  flee_rate      :decimal(, )
 #  capture_rate   :decimal(, )
 #  created_at     :datetime         not null
@@ -33,6 +32,12 @@ class Pokemon < ApplicationRecord
                           source: :from_pokemon
 
   has_many :skins, dependent: :destroy
+
+  has_many :pokemon_types
+  has_many :types, through: :pokemon_types
+
+  has_many :move_pokemons
+  has_many :moves, through: :move_pokemons
 
   # == Validations =============================================================
   # == Scopes ==================================================================

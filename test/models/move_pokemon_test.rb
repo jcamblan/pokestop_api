@@ -1,17 +1,17 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
-# Table name: movesets
+# Table name: move_pokemons
 #
 #  id         :bigint           not null, primary key
+#  move_id    :bigint
+#  pokemon_id :bigint
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 require 'test_helper'
 
-class MovesetTest < ActiveSupport::TestCase
+class MovePokemonTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

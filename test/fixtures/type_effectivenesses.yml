@@ -1,10 +1,13 @@
 # == Schema Information
 #
-# Table name: rewards
+# Table name: type_effectivenesses
 #
-#  id         :bigint           not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id                :bigint           not null, primary key
+#  attacking_type_id :integer
+#  defending_type_id :integer
+#  effectiveness     :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
 #
 
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

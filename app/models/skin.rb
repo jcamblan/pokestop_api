@@ -4,7 +4,7 @@
 #
 # Table name: skins
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  pokemon_id :integer          not null
 #  gender     :string           not null
 #  kind       :string           not null

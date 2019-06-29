@@ -2,7 +2,7 @@
 
 # Moves
 class CreateMoves < ActiveRecord::Migration[6.0]
-  def change # rubocop:disable Metrics/MethodLength
+  def change
     create_table :moves do |t|
       t.string :kind
       t.integer :type_id

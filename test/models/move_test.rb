@@ -4,7 +4,7 @@
 #
 # Table name: moves
 #
-#  id          :integer          not null, primary key
+#  id          :bigint           not null, primary key
 #  kind        :string
 #  type_id     :integer
 #  power       :decimal(, )

@@ -4,7 +4,7 @@
 #
 # Table name: research_steps
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

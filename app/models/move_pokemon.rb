@@ -1,25 +1,22 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
-# Table name: candies
+# Table name: move_pokemons
 #
-#  id              :bigint           not null, primary key
-#  primary_color   :string
-#  secondary_color :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id         :bigint           not null, primary key
+#  move_id    :bigint
+#  pokemon_id :bigint
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
-class Candy < ApplicationRecord
+class MovePokemon < ApplicationRecord
   # == Constants ===============================================================
   # == Attributes ==============================================================
   # == Extensions ==============================================================
   # == Relationships ===========================================================
 
-  translates :name, touch: true
-
-  has_many :pokemons
+  belongs_to :pokemon
+  belongs_to :move
 
   # == Validations =============================================================
   # == Scopes ==================================================================

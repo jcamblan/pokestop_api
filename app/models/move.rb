@@ -4,7 +4,7 @@
 #
 # Table name: moves
 #
-#  id          :integer          not null, primary key
+#  id          :bigint           not null, primary key
 #  kind        :string
 #  type_id     :integer
 #  power       :decimal(, )
@@ -16,5 +16,19 @@
 #
 
 class Move < ApplicationRecord
+  # == Constants ===============================================================
+  # == Attributes ==============================================================
+  # == Extensions ==============================================================
+  # == Relationships ===========================================================
+
   translates :name, :description, touch: true
+
+  # == Validations =============================================================
+
+  enumerize :kind, in: %i[fast charge]
+
+  # == Scopes ==================================================================
+  # == Callbacks ===============================================================
+  # == Class Methods ===========================================================
+  # == Instance Methods ========================================================
 end

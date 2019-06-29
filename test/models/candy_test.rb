@@ -4,9 +4,11 @@
 #
 # Table name: candies
 #
-#  id         :integer          not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :bigint           not null, primary key
+#  primary_color   :string
+#  secondary_color :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 
 require 'test_helper'
