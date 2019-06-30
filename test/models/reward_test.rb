@@ -4,9 +4,14 @@
 #
 # Table name: rewards
 #
-#  id         :bigint           not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :bigint           not null, primary key
+#  rewardable_type :string           not null
+#  rewardable_id   :bigint           not null
+#  reward_type     :string           not null
+#  reward_id       :bigint
+#  quantity        :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 
 require 'test_helper'

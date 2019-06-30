@@ -2,30 +2,32 @@
 
 # == Schema Information
 #
-# Table name: research_steps
+# Table name: rewards
 #
-#  id          :bigint           not null, primary key
-#  research_id :bigint           not null
-#  step_id     :integer          not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id              :bigint           not null, primary key
+#  rewardable_type :string           not null
+#  rewardable_id   :bigint           not null
+#  reward_type     :string           not null
+#  reward_id       :bigint
+#  quantity        :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 
-class ResearchStep < ApplicationRecord
+class ResearchReward < ApplicationRecord
   # == Constants ===============================================================
   # == Attributes ==============================================================
-
-  translates :name, touch: true
-
   # == Extensions ==============================================================
   # == Relationships ===========================================================
 
-  belongs_to :research
-
-  has_many :tasks, class_name: 'ResearchTask'
-  has_many :research_rewards, as: :rewardable
+  belongs_to :rewardable, polymorphic: true
+  belongs_to :reward, polymorphic: true, optional: true
 
   # == Validations =============================================================
+
+  enumerize :rewardable_type, in: %i[ResearchStep ResearchTask]
+  enumerize :reward_type, in: %i[Item Pokemon Xp Candy]
+
   # == Scopes ==================================================================
   # == Callbacks ===============================================================
   # == Class Methods ===========================================================

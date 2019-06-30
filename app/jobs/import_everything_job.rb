@@ -32,7 +32,7 @@ class ImportEverythingJob < ApplicationJob
     create_eggs if @eggs
     create_evolutions if @evolutions
     # create_alternative_skins if @alternative_skins
-    # create_special_researches if @special_researches
+    create_special_researches if @special_researches
   end
 
   private
@@ -350,17 +350,18 @@ class ImportEverythingJob < ApplicationJob
 
   def create_special_researches
     @special_researches.each do |research|
-      create_special_research(research) unless SpecialResearch.find_by(name: research['name'])
+      create_special_research(research) unless Research.find_by(name: research['name'])
     end
   end
 
   def create_special_research(research)
-    r = SpecialResearch.new
+    I18n.locale = :fr
+    r = Research.new
     r.name = research['name']
-    r.is_active = research['is_active']
-    r.desc = research['desc']
+    r.available = research['is_active']
+    r.description = research['desc']
     r.save
-    create_research_steps(research['steps'], SpecialResearch.find_by(name: research['name']))
+    create_research_steps(research['steps'], Research.find_by(name: research['name']))
   end
 
   def create_research_steps(steps, research)
@@ -370,10 +371,11 @@ class ImportEverythingJob < ApplicationJob
   end
 
   def create_research_step(step, research)
+    I18n.locale = :fr
     s = ResearchStep.new
     s.name = step['name']
     s.step_id = step['step_id']
-    s.special_research_id = research.id
+    s.research_id = research.id
     s.save
     create_research_tasks(step['tasks'], ResearchStep.find_by(name: step['name']))
     create_research_rewards(step['rewards'], ResearchStep.find_by(name: step['name']))
@@ -387,14 +389,22 @@ class ImportEverythingJob < ApplicationJob
 
   def create_research_task(task, step)
     t = ResearchTask.new
-    t.name = task['name']
-    t.desc = task['desc']
-    t.reward_type = task['reward_type']
-    t.pokemon_reward = Pokemon.find_by(name: task['pokemon_reward']).id if task['pokemon_reward']
-    t.item_reward = Item.find_by(name: task['item_reward']).id if task['item_reward']
-    t.xp_reward = task['xp_reward'] if task['xp_reward']
+    I18n.locale = :fr
+    t.description = task['desc']
     t.research_step_id = step.id
     t.save
+
+    reward_type = task['reward_type'].capitalize
+    reward_name = task['item_reward'] || task['pokemon_reward']
+    reward_id = reward_type.constantize.find_by(name: reward_name)&.id unless reward_type == 'Xp'
+
+    ResearchReward.create(
+      rewardable_type: 'ResearchTask',
+      rewardable_id: t.id,
+      reward_type: reward_type,
+      reward_id: reward_type == 'Xp' ? nil : reward_id,
+      quantity: task['xp_reward']
+    )
   end
 
   def create_research_rewards(rewards, step)
@@ -404,14 +414,15 @@ class ImportEverythingJob < ApplicationJob
   end
 
   def create_research_reward(reward, step)
+    I18n.locale = :fr
+    reward_type = reward['reward_type'].capitalize
+    reward_name = reward['item'] || reward['pokemon'] || reward['candy']
+
     r = ResearchReward.new
-    r.name = reward['name']
-    r.reward_type = reward['reward_type']
+    r.reward_type = reward_type
     r.quantity = reward['quantity']
-    r.research_step_id = step.id
-    r.item_id = Item.find_by(name: reward['item']).id if reward['item']
-    r.pokemon_id = Pokemon.find_by(name: reward['pokemon']).id if reward['pokemon']
-    r.candy_id = Candy.find_by(name: reward['candy']).id if reward['candy']
+    r.rewardable = step
+    r.reward_id = reward_type.constantize.find_by(name: reward_name)&.id
     r.save
   end
 end

@@ -13,10 +13,13 @@
 class Research < ApplicationRecord
   # == Constants ===============================================================
   # == Attributes ==============================================================
+
+  translates :name, :description, touch: true
+
   # == Extensions ==============================================================
   # == Relationships ===========================================================
 
-  translates :name, :description, touch: true
+  has_many :steps, class_name: 'ResearchStep'
 
   # == Validations =============================================================
   # == Scopes ==================================================================
