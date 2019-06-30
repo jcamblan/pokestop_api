@@ -1,30 +1,22 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
-# Table name: evolutions
+# Table name: egg_pokemons
 #
-#  id                     :bigint           not null, primary key
-#  first_pokemon_id       :integer          not null
-#  from_pokemon_id        :integer          not null
-#  to_pokemon_id          :integer          not null
-#  required_candies_count :integer
-#  required_item_id       :integer
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
+#  id         :bigint           not null, primary key
+#  pokemon_id :bigint
+#  egg_id     :bigint
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
-class Evolution < ApplicationRecord
+class EggPokemon < ApplicationRecord
   # == Constants ===============================================================
   # == Attributes ==============================================================
   # == Extensions ==============================================================
   # == Relationships ===========================================================
 
-  belongs_to :first_pokemon, class_name: 'Pokemon'
-  belongs_to :from_pokemon, class_name: 'Pokemon'
-  belongs_to :to_pokemon, class_name: 'Pokemon'
-
-  has_one :item
+  belongs_to :pokemon
+  belongs_to :egg
 
   # == Validations =============================================================
   # == Scopes ==================================================================

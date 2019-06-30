@@ -18,7 +18,8 @@ class Egg < ApplicationRecord
 
   translates :name, :description, touch: true
 
-  has_many :pokemons
+  has_many :egg_pokemons
+  has_many :pokemons, through: :egg_pokemons, source: :pokemon
 
   # == Validations =============================================================
   # == Scopes ==================================================================

@@ -29,6 +29,9 @@ class Pokemon < ApplicationRecord
   translates :name, :description, touch: true
 
   has_many :evolutions, foreign_key: :from_pokemon_id, dependent: :destroy
+  has_many :next_forms, class_name: 'Pokemon',
+                        through: :evolutions,
+                        source: :to_pokemon
   has_one :prevolution, class_name: 'Evolution', foreign_key: :to_pokemon_id
   has_one :previous_form, class_name: 'Pokemon',
                           through: :prevolution,
@@ -41,6 +44,9 @@ class Pokemon < ApplicationRecord
 
   has_many :move_pokemons
   has_many :moves, through: :move_pokemons
+
+  has_many :egg_pokemons
+  has_many :eggs, through: :egg_pokemons, source: :egg
 
   # == Validations =============================================================
   # == Scopes ==================================================================

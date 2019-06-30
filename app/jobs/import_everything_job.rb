@@ -29,8 +29,8 @@ class ImportEverythingJob < ApplicationJob
     create_moves if @attacks
     create_items if @items
     create_pokemons if @pokemons
-    # create_eggs if @eggs
-    # create_evolutions if @evolutions
+    create_eggs if @eggs
+    create_evolutions if @evolutions
     # create_alternative_skins if @alternative_skins
     # create_special_researches if @special_researches
   end
@@ -308,45 +308,45 @@ class ImportEverythingJob < ApplicationJob
     p.save
   end
 
-  ## PUIS LES OEUFS
+  # == EGGS ====================================================================
 
   def create_eggs
     @eggs.each do |egg|
-      create_egg(egg) unless Egg.where(name: egg['name']).first
+      I18n.locale = :fr
+      create_egg(egg) unless Egg.find_by(name: egg['name'])
     end
   end
 
   def create_egg(egg)
+    I18n.locale = :fr
     e = Egg.new
     e.name = egg['name']
-    e.desc = egg['desc']
+    e.description = egg['desc']
     egg['pokemons'].each do |p|
-      e.pokemons << Pokemon.where(num: p['num']).first
+      e.pokemons << Pokemon.find_by(nid: p['num'])
     end
     e.save
   end
 
-  ## PUIS LES EVOLUTIONS
+  # == EVOLUTIONS ==============================================================
 
   def create_evolutions
     @evolutions.each do |evolution|
-      create_evolution(evolution) unless Evolution.where(title: evolution['title']).first
+      create_evolution(evolution)
     end
   end
 
   def create_evolution(evolution)
-    e = Evolution.new
-    e.title = evolution['title']
-    e.title_en = evolution['title_en']
-    e.first_form = Pokemon.where(num: evolution['first_form']).first.id
-    e.pokemon_id = Pokemon.where(num: evolution['before_evolution']).first.id
-    e.after_evolution = Pokemon.where(num: evolution['after_evolution']).first.id
-    e.candies = evolution['candies']
-    e.item_id = Item.where(name: evolution['item']).first.id if evolution['item']
-    e.save
+    Evolution.create(
+      first_pokemon_id: Pokemon.find_by(nid: evolution['first_form']).id,
+      from_pokemon_id: Pokemon.find_by(nid: evolution['before_evolution']).id,
+      to_pokemon_id: Pokemon.find_by(nid: evolution['after_evolution']).id,
+      required_candies_count: evolution['candies'],
+      required_item_id: Item.find_by(name: evolution['item'])&.id
+    )
   end
 
-  ## PUIS LES RECHERCHES
+  # == RESEARCHES ==============================================================
 
   def create_special_researches
     @special_researches.each do |research|
