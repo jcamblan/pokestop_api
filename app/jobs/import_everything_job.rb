@@ -258,10 +258,13 @@ class ImportEverythingJob < ApplicationJob
       nid: pokemon['num'],
       generation_id: Generation.find_by(uid: pokemon['generation'])&.id,
       candy_id: Candy.find_by(name: pokemon['candy'])&.id,
-      candy_distance: pokemon['candy_distance'],
+      buddy_distance: pokemon['candy_distance'],
       kind: pokemon['alolan'] ? :alolan : :normal,
       flee_rate: pokemon['flee_rate'],
-      capture_rate: pokemon['capture_rate']
+      capture_rate: pokemon['capture_rate'],
+      base_atk: pokemon['atk'],
+      base_def: pokemon['def'],
+      base_sta: pokemon['sta']
     )
 
     Pokemon::Translation.create(

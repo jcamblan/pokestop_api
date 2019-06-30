@@ -153,11 +153,14 @@ ActiveRecord::Schema.define(version: 2019_06_29_200231) do
     t.string "nid", null: false
     t.bigint "generation_id", null: false
     t.integer "candy_id"
-    t.integer "candy_distance"
+    t.integer "buddy_distance"
     t.string "kind", default: "normal"
     t.bigint "alolan_form_id"
     t.decimal "flee_rate"
     t.decimal "capture_rate"
+    t.integer "base_atk"
+    t.integer "base_def"
+    t.integer "base_sta"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
