@@ -4,9 +4,10 @@
 #
 # Table name: research_tasks
 #
-#  id         :bigint           not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id               :bigint           not null, primary key
+#  research_step_id :bigint
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
 #
 
 require 'test_helper'

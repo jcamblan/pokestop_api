@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: rewards
+# Table name: research_rewards
 #
 #  id              :bigint           not null, primary key
 #  rewardable_type :string           not null
