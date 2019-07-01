@@ -9,6 +9,7 @@ gem 'activerecord-import'
 gem 'ar_lazy_preload'
 gem 'enumerize'
 gem 'globalize'
+gem 'graphql'
 gem 'paper_trail'
 gem 'pg'
 gem 'puma', '~> 3.11'
@@ -27,6 +28,7 @@ end
 
 group :development do
   gem 'annotate'
+  gem 'graphiql-rails'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'

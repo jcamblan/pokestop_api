@@ -79,6 +79,10 @@ GEM
       activemodel (>= 4.2, < 6.1)
       activerecord (>= 4.2, < 6.1)
       request_store (~> 1.0)
+    graphiql-rails (1.7.0)
+      railties
+      sprockets-rails
+    graphql (1.9.7)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     listen (3.1.5)
@@ -178,6 +182,8 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   enumerize
   globalize
+  graphiql-rails
+  graphql
   listen (>= 3.0.5, < 3.2)
   paper_trail
   pg
