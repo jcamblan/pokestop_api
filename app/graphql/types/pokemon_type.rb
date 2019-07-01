@@ -4,19 +4,31 @@ module Types
   class PokemonType < Types::BaseObject
     field :id, ID, null: false
     field :nid, String, null: false, description: 'National Pokemon ID'
-    field :base_atk, Float, null: true
-    field :base_def, Float, null: true
-    field :base_sta, Float, null: true
-    field :max_cp, Float, null: true do
-      argument :level, Int, required: false
+    field :name, String, null: true
+    field :kind, String, null: false
+    field :base_atk, Float, null: true, description: 'Pokemon base Attack'
+    field :base_def, Float, null: true, description: 'Pokemon base Defense'
+    field :base_sta, Float, null: true, description: 'Pokemon base Stamina'
+    field :types, [Types::TypeType], null: false, description: 'Pokemon types'
+    field :translations, [Types::PokemonTranslationType], null: true
+    field :fast_moves, [Types::MoveType], null: true, description: ''
+    field :charge_moves, [Types::MoveType], null: true, description: ''
+
+    field :max_cp, Float, null: true, description: 'Max CP value of pokemon' do
+      argument :level, Int, required: false,
+                            description: 'max CP value for given level'
     end
 
-    field :translations, [Types::PokemonTranslationType], null: true
+    def fast_moves
+      object.moves.where(kind: :fast)
+    end
 
-    def max_cp(level = nil)
-      return object.max_cp(level[:level]) if level
+    def charge_moves
+      object.moves.where(kind: :charge)
+    end
 
-      object.max_cp
+    def max_cp(level: nil)
+      object.max_cp(level)
     end
   end
 end

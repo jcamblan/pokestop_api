@@ -10,7 +10,10 @@ module Types
     field :pokemons,
           [Types::PokemonType],
           null: false,
-          description: 'Returns pokemons list'
+          description: 'Returns pokemons list' do
+      argument :kind, String, required: false
+      argument :generation_id, ID, required: false
+    end
 
     field :pokemon, PokemonType, null: false, description: 'show pokemon' do
       argument :pokemon_id, ID, required: true, as: :id
@@ -20,8 +23,12 @@ module Types
       Generation.all
     end
 
-    def pokemons
-      Pokemon.all.order(:nid)
+    def pokemons(**args)
+      if args
+        Pokemon.where(args).order(:nid)
+      else
+        Pokemon.all.order(:nid)
+      end
     end
 
     def pokemon(id:)

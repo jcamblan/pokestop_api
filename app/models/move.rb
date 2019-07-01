@@ -18,10 +18,13 @@
 class Move < ApplicationRecord
   # == Constants ===============================================================
   # == Attributes ==============================================================
+
+  translates :name, :description, touch: true
+
   # == Extensions ==============================================================
   # == Relationships ===========================================================
 
-  translates :name, :description, touch: true
+  belongs_to :type
 
   # == Validations =============================================================
 
