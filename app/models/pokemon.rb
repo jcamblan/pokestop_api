@@ -54,7 +54,7 @@ class Pokemon < ApplicationRecord
   # == Class Methods ===========================================================
   # == Instance Methods ========================================================
 
-  def max_cp(level)
+  def max_cp(level = 40)
     cp(15, 15, 15, level)
   end
 
@@ -63,6 +63,7 @@ class Pokemon < ApplicationRecord
   end
 
   def cp(ind_atk, ind_def, ind_sta, level)
+    return nil unless base_atk && base_def && base_sta
     attack = base_atk + ind_atk
     defense = base_def + ind_def
     stamina = base_sta + ind_sta
