@@ -61,6 +61,8 @@ GEM
     annotate (2.7.5)
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 13.0)
+    ar_lazy_preload (0.2.6)
+      rails (>= 4.2)
     bootsnap (1.4.4)
       msgpack (~> 1.0)
     builder (3.2.3)
@@ -172,6 +174,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-import
   annotate
+  ar_lazy_preload
   bootsnap (>= 1.4.2)
   enumerize
   globalize

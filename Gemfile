@@ -6,6 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.0'
 
 gem 'activerecord-import'
+gem 'ar_lazy_preload'
 gem 'enumerize'
 gem 'globalize'
 gem 'paper_trail'
