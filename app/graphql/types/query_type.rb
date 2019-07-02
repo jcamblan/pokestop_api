@@ -19,6 +19,13 @@ module Types
       argument :pokemon_id, ID, required: true, as: :id
     end
 
+    field :researches, [Types::ResearchType], null: false do
+      argument :available, Boolean, required: false
+    end
+    field :research, ResearchType, null: false do
+      argument :research_id, ID, required: true, as: :id
+    end
+
     def generations
       Generation.all
     end
@@ -33,6 +40,18 @@ module Types
 
     def pokemon(id:)
       Pokemon.find(id)
+    end
+
+    def research(id:)
+      Research.find(id)
+    end
+
+    def researches(**args)
+      if args
+        Research.where(args)
+      else
+        Research.all
+      end
     end
   end
 end
