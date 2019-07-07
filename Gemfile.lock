@@ -63,12 +63,24 @@ GEM
       rake (>= 10.4, < 13.0)
     ar_lazy_preload (0.2.6)
       rails (>= 4.2)
+    bcrypt (3.1.13)
     bootsnap (1.4.4)
       msgpack (~> 1.0)
     builder (3.2.3)
+    clearance (1.17.0)
+      actionmailer (>= 3.1)
+      activemodel (>= 3.1)
+      activerecord (>= 3.1)
+      bcrypt
+      email_validator (~> 1.4)
+      railties (>= 3.1)
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
+    doorkeeper (5.1.0)
+      railties (>= 5)
+    email_validator (1.6.0)
+      activemodel
     enumerize (2.3.1)
       activesupport (>= 3.2)
     erubi (1.8.0)
@@ -116,6 +128,7 @@ GEM
       pry (>= 0.10.4)
     puma (3.12.1)
     rack (2.0.7)
+    rack-cors (1.0.3)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.0.0.rc1)
@@ -180,6 +193,8 @@ DEPENDENCIES
   annotate
   ar_lazy_preload
   bootsnap (>= 1.4.2)
+  clearance
+  doorkeeper
   enumerize
   globalize
   graphiql-rails
@@ -190,6 +205,7 @@ DEPENDENCIES
   pry
   pry-rails
   puma (~> 3.11)
+  rack-cors
   rails (~> 6.0.0.rc1)
   spring
   spring-watcher-listen (~> 2.0.0)

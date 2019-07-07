@@ -7,12 +7,15 @@ ruby '2.6.0'
 
 gem 'activerecord-import'
 gem 'ar_lazy_preload'
+gem 'clearance'
+gem 'doorkeeper'
 gem 'enumerize'
 gem 'globalize'
 gem 'graphql'
 gem 'paper_trail'
 gem 'pg'
 gem 'puma', '~> 3.11'
+gem 'rack-cors'
 gem 'rails', '~> 6.0.0.rc1'
 
 # Use Active Storage variant
