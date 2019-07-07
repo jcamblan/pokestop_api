@@ -13,7 +13,6 @@
 #  remember_token     :string(128)      not null
 #
 
-
 class User < ApplicationRecord
   # == Constants ===============================================================
   # == Attributes ==============================================================
