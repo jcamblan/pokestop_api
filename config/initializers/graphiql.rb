@@ -1,5 +1,3 @@
 # frozen_string_literal: true
 
-GraphiQL::Rails.config.headers['Authorization'] = lambda {
-  "bearer #{ENV['GRAPHIQL_TOKEN']}"
-}
+GraphiQL::Rails.config.headers['Authorization'] = ->(_context) { "bearer #{ENV['GRAPHIQL_TOKEN']}" }
