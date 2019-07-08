@@ -7,12 +7,13 @@ module Types
           null: false,
           description: 'Returns generations list'
 
-    field :pokemons,
-          [Types::PokemonType],
-          null: false,
-          description: 'Returns pokemons list' do
+    field :all_pokemons, [Types::PokemonType], null: false do
       argument :kind, String, required: false
       argument :generation_id, ID, required: false
+      argument :limit, Int, required: false
+      argument :skip, Int, required: false
+      argument :order, String, required: false
+      argument :type_id, ID, required: false
     end
 
     field :pokemon, PokemonType, null: false, description: 'show pokemon' do
@@ -30,12 +31,17 @@ module Types
       Generation.all
     end
 
-    def pokemons(**args)
-      if args
-        Pokemon.where(args).order(:nid)
-      else
-        Pokemon.all.order(:nid)
-      end
+    def all_pokemons(**args)
+      # TODO: refactor this shit. Maybe with Resolver?
+      scope = Pokemon
+      scope = scope.joins(:types).where(types: { id: args[:type_id] }) if args[:type_id]
+      scope = scope.all unless args.any?
+      scope = scope.where(kind: args[:kind]) if args[:kind]
+      order = args[:order] || :nid
+      scope = scope.order(order)
+      scope = scope.limit(args[:limit]) if args[:limit]
+      scope = scope.offset(args[:skip]) if args[:skip]
+      scope
     end
 
     def pokemon(id:)
