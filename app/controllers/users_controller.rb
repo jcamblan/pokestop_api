@@ -2,7 +2,6 @@
 
 class UsersController < ApplicationController
   skip_before_action :doorkeeper_authorize!, only: :create
-  skip_after_action :verify_authorized, only: :create
   before_action :set_user, only: %i[show followees followers]
   before_action :authorize_user, only: %i[show followees followers]
 

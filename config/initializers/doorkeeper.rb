@@ -18,11 +18,17 @@ Doorkeeper.configure do
 
   api_only
 
-  access_token_expires_in 2.hours
+  custom_access_token_expires_in do |context|
+    if context.grant_type == Doorkeeper::OAuth::CLIENT_CREDENTIALS
+      1.year
+    else
+      2.months
+    end
+  end
 
   use_refresh_token
 
   enforce_configured_scopes
 
-  grant_flows %w[password]
+  grant_flows %w[password client_credentials]
 end
