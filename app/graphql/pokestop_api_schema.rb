@@ -3,5 +3,5 @@
 class PokestopApiSchema < GraphQL::Schema
   mutation(Types::MutationType)
   query(Types::QueryType)
-  max_depth 5
+  max_depth 8
 end

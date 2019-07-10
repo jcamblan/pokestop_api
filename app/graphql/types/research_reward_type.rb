@@ -3,6 +3,7 @@
 module Types
   class ResearchRewardType < Types::BaseObject
     field :id, ID, null: false
-    field :name, String, null: true
+    field :reward, ResearchRewardUnion, null: true
+    field :quantity, Int, null: true
   end
 end
