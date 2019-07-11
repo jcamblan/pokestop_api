@@ -38,6 +38,10 @@ module Types
 
     field :all_evolutions_chains, [Types::EvolutionChainType], null: false
 
+    field :evolution_chain, EvolutionChainType, null: true do
+      argument :pokemon_id, ID, required: true, as: :from_pokemon_id
+    end
+
     def all_generations
       Generation.all
     end
@@ -86,6 +90,10 @@ module Types
 
     def all_evolutions_chains
       Evolution.all.select { |e| e.first_pokemon_id == e.from_pokemon_id }
+    end
+
+    def evolution_chain(from_pokemon_id:)
+      Evolution.find_by(from_pokemon_id: from_pokemon_id)
     end
   end
 end
