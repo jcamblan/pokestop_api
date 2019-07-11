@@ -19,7 +19,7 @@ class Generation < ApplicationRecord
 
   translates :name, touch: true
 
-  has_many :pokemons
+  has_many :pokemons, dependent: :destroy
 
   # == Validations =============================================================
   # == Scopes ==================================================================

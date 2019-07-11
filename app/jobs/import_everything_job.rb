@@ -21,7 +21,8 @@ class ImportEverythingJob < ApplicationJob
     @alternative_skins = @backup_file.dig('alternative_skins')
     @special_researches = @backup_file.dig('special_researches')
 
-    clear_everything
+    Xp.find_or_create_by(name: 'PX')
+
     create_generations if @generations
     create_candies if @candies
     create_types if @types
@@ -31,15 +32,10 @@ class ImportEverythingJob < ApplicationJob
     create_pokemons if @pokemons
     create_eggs if @eggs
     create_evolutions if @evolutions
-    # create_alternative_skins if @alternative_skins
     create_special_researches if @special_researches
   end
 
   private
-
-  def clear_everything
-    Generation.destroy_all
-  end
 
   # == CREATE GENERATIONS ======================================================
 
@@ -394,17 +390,7 @@ class ImportEverythingJob < ApplicationJob
     t.research_step_id = step.id
     t.save
 
-    reward_type = task['reward_type'].capitalize
-    reward_name = task['item_reward'] || task['pokemon_reward']
-    reward_id = reward_type.constantize.find_by(name: reward_name)&.id unless reward_type == 'Xp'
-
-    ResearchReward.create(
-      rewardable_type: 'ResearchTask',
-      rewardable_id: t.id,
-      reward_type: reward_type,
-      reward_id: reward_type == 'Xp' ? nil : reward_id,
-      quantity: task['xp_reward']
-    )
+    create_research_reward(task, t)
   end
 
   def create_research_rewards(rewards, step)
@@ -413,15 +399,25 @@ class ImportEverythingJob < ApplicationJob
     end
   end
 
-  def create_research_reward(reward, step)
+  def create_research_reward(reward, rewardable)
     I18n.locale = :fr
+
     reward_type = reward['reward_type'].capitalize
-    reward_name = reward['item'] || reward['pokemon'] || reward['candy']
+    reward_name = case reward['reward_type']
+                  when 'xp'
+                    'PX'
+                  when 'pokemon'
+                    reward['pokemon'] || reward['pokemon_reward']
+                  when 'item'
+                    reward['item'] || reward['item_reward']
+                  when 'candy'
+                    reward['candy'] || reward['candy_reward']
+                  end
 
     r = ResearchReward.new
     r.reward_type = reward_type
-    r.quantity = reward['quantity']
-    r.rewardable = step
+    r.quantity = reward['quantity'] || reward['xp_reward']
+    r.rewardable = rewardable
     r.reward_id = reward_type.constantize.find_by(name: reward_name)&.id
     r.save
   end
