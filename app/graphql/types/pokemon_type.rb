@@ -19,6 +19,9 @@ module Types
                             description: 'max CP value for given level'
     end
 
+    field :next_forms, [Types::PokemonType], null: true
+    field :previous_form, PokemonType, null: true
+
     def fast_moves
       object.moves.where(kind: :fast)
     end

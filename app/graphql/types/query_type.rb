@@ -36,6 +36,8 @@ module Types
       argument :egg_id, ID, required: true, as: :id
     end
 
+    field :all_evolutions_chains, [Types::EvolutionChainType], null: false
+
     def all_generations
       Generation.all
     end
@@ -80,6 +82,10 @@ module Types
 
     def egg(id:)
       Egg.find(id)
+    end
+
+    def all_evolutions_chains
+      Evolution.all.select { |e| e.first_pokemon_id == e.from_pokemon_id }
     end
   end
 end
