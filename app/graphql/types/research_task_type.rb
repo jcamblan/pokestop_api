@@ -6,7 +6,7 @@ module Types
     field :description, String, null: true
     field :research_id, ID, null: true
 
-    field :research_reward, ResearchRewardType, null: true
+    field :research_rewards, [Types::ResearchRewardType], null: true
 
     field :translations, [Types::ResearchStepTranslationType], null: true
   end

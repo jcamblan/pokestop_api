@@ -388,6 +388,7 @@ class ImportEverythingJob < ApplicationJob
     I18n.locale = :fr
     t.description = task['desc']
     t.research_step_id = step.id
+    t.kind = :special
     t.save
 
     create_research_reward(task, t)

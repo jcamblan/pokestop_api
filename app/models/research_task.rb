@@ -19,13 +19,14 @@ class ResearchTask < ApplicationRecord
   # == Extensions ==============================================================
   # == Relationships ===========================================================
 
-  belongs_to :research_step
-
+  belongs_to :research_step, optional: true
   has_one :research, through: :research_step
-
-  has_one :research_reward, as: :rewardable
+  has_many :research_rewards, as: :rewardable
 
   # == Validations =============================================================
+
+  enumerize :kind, in: %i[special normal]
+
   # == Scopes ==================================================================
   # == Callbacks ===============================================================
   # == Class Methods ===========================================================

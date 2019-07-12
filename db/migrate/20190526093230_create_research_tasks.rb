@@ -4,6 +4,7 @@ class CreateResearchTasks < ActiveRecord::Migration[6.0]
   def change
     create_table :research_tasks do |t|
       t.bigint :research_step_id
+      t.string :kind
       t.timestamps
     end
 
