@@ -15,6 +15,7 @@ class CreatePokemons < ActiveRecord::Migration[6.0]
       t.integer :base_atk
       t.integer :base_def
       t.integer :base_sta
+      t.boolean :shiny, default: false
       t.timestamps
     end
 

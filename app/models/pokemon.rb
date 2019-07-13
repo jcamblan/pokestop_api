@@ -16,6 +16,7 @@
 #  base_atk       :integer
 #  base_def       :integer
 #  base_sta       :integer
+#  shiny          :boolean          default(FALSE)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
