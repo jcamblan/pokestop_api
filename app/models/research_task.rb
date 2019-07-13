@@ -6,6 +6,7 @@
 #
 #  id               :bigint           not null, primary key
 #  research_step_id :bigint
+#  kind             :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
