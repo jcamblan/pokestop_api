@@ -1,17 +1,21 @@
 # frozen_string_literal: true
 
 class GraphqlController < ApplicationController
-  skip_before_action :doorkeeper_authorize!
-
   def execute
     variables = ensure_hash(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
     context = {
       # Query context goes here, for example:
-      # current_user: current_user,
+      current_user: current_user,
+      locale: current_locale
     }
-    result = PokestopApiSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
+    result = PokestopApiSchema.execute(
+      query,
+      variables: variables,
+      context: context,
+      operation_name: operation_name
+    )
     render json: result
   rescue StandardError => e
     raise e unless Rails.env.development?
@@ -20,6 +24,17 @@ class GraphqlController < ApplicationController
   end
 
   private
+
+  def current_user
+    token = Doorkeeper::AccessToken.find_by(
+      token: request.headers['POKESTOP_TOKEN']
+    )
+    User.find_by(id: token&.resource_owner_id)
+  end
+
+  def current_locale
+    I18n.locale = request.headers['LOCALE'] || :fr
+  end
 
   # Handle form data, JSON body, or a blank value
   def ensure_hash(ambiguous_param)
@@ -43,6 +58,11 @@ class GraphqlController < ApplicationController
     logger.error error.message
     logger.error error.backtrace.join("\n")
 
-    render json: { error: { message: error.message, backtrace: error.backtrace }, data: {} }, status: 500
+    render json: {
+      error: {
+        message: error.message,
+        backtrace: error.backtrace
+      }, data: {}
+    }, status: 500
   end
 end

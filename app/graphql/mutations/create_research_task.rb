@@ -15,5 +15,9 @@ module Mutations
         research_step_id: research_step_id
       )
     end
+
+    def self.authorized?(object, context)
+      super && context[:current_user]&.can_manage?(name)
+    end
   end
 end

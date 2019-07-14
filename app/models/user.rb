@@ -37,4 +37,15 @@ class User < ApplicationRecord
   # == Callbacks ===============================================================
   # == Class Methods ===========================================================
   # == Instance Methods ========================================================
+
+  def can_manage?(class_name)
+    case class_name
+    when 'Mutations::CreateResearchTask'
+      true
+    when 'Mutations::CreateResearchReward'
+      true
+    else
+      false
+    end
+  end
 end

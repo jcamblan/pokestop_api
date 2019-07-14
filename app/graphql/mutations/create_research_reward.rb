@@ -10,14 +10,12 @@ module Mutations
 
     type Types::ResearchRewardType
 
-    def resolve(rewardable_id, rewardable_type, reward_id, reward_type, quantity)
-      ResearchReward.create!(
-        rewardable_id: rewardable_id,
-        rewardable_type: rewardable_type,
-        reward_id: reward_id,
-        reward_type: reward_type,
-        quantity: quantity
-      )
+    def resolve(args)
+      ResearchReward.create!(args)
+    end
+
+    def self.authorized?(object, context)
+      super && context[:current_user]&.can_manage?(name)
     end
   end
 end
