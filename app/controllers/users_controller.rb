@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  skip_before_action :doorkeeper_authorize!, only: :create
-  before_action :set_user, only: %i[show followees followers]
-  before_action :authorize_user, only: %i[show followees followers]
+  # skip_before_action :doorkeeper_authorize!, only: :create
 
   def create
     user = User.new(user_params)
