@@ -189,6 +189,7 @@ ActiveRecord::Schema.define(version: 20_190_710_203_925) do
     t.datetime 'updated_at', precision: 6, null: false
     t.string 'name'
     t.text 'description'
+    t.string 'category'
     t.index ['locale'], name: 'index_pokemon_translations_on_locale'
     t.index ['pokemon_id'], name: 'index_pokemon_translations_on_pokemon_id'
   end
@@ -200,11 +201,13 @@ ActiveRecord::Schema.define(version: 20_190_710_203_925) do
 
   create_table 'pokemons', force: :cascade do |t|
     t.string 'nid', null: false
+    t.string 'pkgo_id'
     t.bigint 'generation_id', null: false
     t.integer 'candy_id'
     t.integer 'buddy_distance'
     t.string 'kind', default: 'normal'
     t.bigint 'alolan_form_id'
+    t.bigint 'normal_form_id'
     t.decimal 'flee_rate'
     t.decimal 'capture_rate'
     t.integer 'base_atk'

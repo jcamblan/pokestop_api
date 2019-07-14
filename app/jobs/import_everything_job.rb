@@ -252,6 +252,7 @@ class ImportEverythingJob < ApplicationJob
 
     p = Pokemon.create(
       nid: pokemon['num'],
+      pkgo_id: pokemon['num'].gsub(/^([0-9]+)(a)/, '\1').rjust(4, '0'),
       generation_id: Generation.find_by(uid: pokemon['generation'])&.id,
       candy_id: Candy.find_by(name: pokemon['candy'])&.id,
       buddy_distance: pokemon['candy_distance'],

@@ -27,7 +27,7 @@ class Pokemon < ApplicationRecord
   # == Extensions ==============================================================
   # == Relationships ===========================================================
 
-  translates :name, :description, touch: true
+  translates :name, :description, :category, touch: true
 
   has_many :evolutions, foreign_key: :from_pokemon_id, dependent: :destroy
   has_many :next_forms, class_name: 'Pokemon',
@@ -50,6 +50,9 @@ class Pokemon < ApplicationRecord
   has_many :eggs, through: :egg_pokemons, source: :egg
 
   # == Validations =============================================================
+
+  enumerize :kind, in: %i[normal alolan]
+
   # == Scopes ==================================================================
   # == Callbacks ===============================================================
   # == Class Methods ===========================================================

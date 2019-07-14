@@ -10,9 +10,11 @@ module Types
     field :base_def, Float, null: true, description: 'Pokemon base Defense'
     field :base_sta, Float, null: true, description: 'Pokemon base Stamina'
     field :types, [Types::TypeType], null: false, description: 'Pokemon types'
-    field :translations, [Types::PokemonTranslationType], null: true
     field :fast_moves, [Types::MoveType], null: true, description: ''
     field :charge_moves, [Types::MoveType], null: true, description: ''
+    field :generation_id, ID, null: false
+    field :category, String, null: true
+    field :description, String, null: true
 
     field :max_cp, Float, null: true, description: 'Max CP value of pokemon' do
       argument :level, Int, required: false,
@@ -21,6 +23,8 @@ module Types
 
     field :next_forms, [Types::PokemonType], null: true
     field :previous_form, PokemonType, null: true
+
+    field :translations, [Types::PokemonTranslationType], null: true
 
     def fast_moves
       object.moves.where(kind: :fast)
