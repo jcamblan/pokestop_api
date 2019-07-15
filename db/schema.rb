@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_190_710_203_925) do
+ActiveRecord::Schema.define(version: 20_190_715_202_723) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -182,6 +182,13 @@ ActiveRecord::Schema.define(version: 20_190_710_203_925) do
     t.index ['uid'], name: 'index_oauth_applications_on_uid', unique: true
   end
 
+  create_table 'pokemon_raids', force: :cascade do |t|
+    t.bigint 'pokemon_id', null: false
+    t.bigint 'raid_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+  end
+
   create_table 'pokemon_translations', force: :cascade do |t|
     t.bigint 'pokemon_id', null: false
     t.string 'locale', null: false
@@ -214,6 +221,13 @@ ActiveRecord::Schema.define(version: 20_190_710_203_925) do
     t.integer 'base_def'
     t.integer 'base_sta'
     t.boolean 'shiny', default: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+  end
+
+  create_table 'raids', force: :cascade do |t|
+    t.string 'kind', default: 'normal'
+    t.integer 'level', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
   end
