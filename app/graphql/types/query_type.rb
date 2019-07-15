@@ -20,6 +20,10 @@ module Types
 
     field :all_eggs, [Types::EggType], null: false
 
+    field :all_evolutions_chains, [Types::EvolutionChainType], null: false
+
+    field :all_raids, [Types::RaidType], null: false
+
     field :generation, GenerationType, null: false do
       argument :generation_id, ID, required: true, as: :id
     end
@@ -36,10 +40,12 @@ module Types
       argument :egg_id, ID, required: true, as: :id
     end
 
-    field :all_evolutions_chains, [Types::EvolutionChainType], null: false
-
     field :evolution_chain, EvolutionChainType, null: true do
       argument :pokemon_id, ID, required: true, as: :from_pokemon_id
+    end
+
+    field :raid, RaidType, null: false do
+      argument :raid_id, ID, required: true, as: :id
     end
 
     def all_generations
@@ -94,6 +100,14 @@ module Types
 
     def evolution_chain(from_pokemon_id:)
       Evolution.find_by(from_pokemon_id: from_pokemon_id)
+    end
+
+    def all_raids
+      Raid.all
+    end
+
+    def raid(id:)
+      Raid.find(id)
     end
   end
 end
