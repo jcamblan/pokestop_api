@@ -18,6 +18,7 @@ gem 'pg'
 gem 'puma', '~> 3.11'
 gem 'rack-cors'
 gem 'rails', '~> 6.0.0.rc1'
+gem 'sidekiq'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
