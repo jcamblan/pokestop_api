@@ -21,6 +21,7 @@
 #  shiny          :boolean          default(FALSE)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  rarity         :string           default("normal")
 #
 
 class Pokemon < ApplicationRecord
@@ -57,6 +58,7 @@ class Pokemon < ApplicationRecord
   # == Validations =============================================================
 
   enumerize :kind, in: %i[normal alolan]
+  enumerize :rarity, in: %i[normal legendary fabulous]
 
   # == Scopes ==================================================================
   # == Callbacks ===============================================================
