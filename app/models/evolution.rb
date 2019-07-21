@@ -24,7 +24,7 @@ class Evolution < ApplicationRecord
   belongs_to :from_pokemon, class_name: 'Pokemon'
   belongs_to :to_pokemon, class_name: 'Pokemon'
 
-  belongs_to :required_item, class_name: 'Item'
+  belongs_to :required_item, class_name: 'Item', optional: true
 
   # == Validations =============================================================
   # == Scopes ==================================================================
