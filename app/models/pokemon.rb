@@ -55,6 +55,8 @@ class Pokemon < ApplicationRecord
   has_many :pokemon_raids, dependent: :destroy
   has_many :raids, through: :pokemon_raids
 
+  has_many :skins, class_name: 'PokemonSkin', dependent: :destroy
+
   # == Validations =============================================================
 
   enumerize :kind, in: %i[normal alolan]

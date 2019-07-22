@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_190_717_202_607) do
+ActiveRecord::Schema.define(version: 20_190_721_211_830) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -187,6 +187,17 @@ ActiveRecord::Schema.define(version: 20_190_717_202_607) do
     t.bigint 'raid_id', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
+  end
+
+  create_table 'pokemon_skins', force: :cascade do |t|
+    t.string 'kind', default: 'normal'
+    t.string 'gender', default: 'neutral'
+    t.boolean 'shiny', default: false
+    t.text 'image_data'
+    t.bigint 'pokemon_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['pokemon_id'], name: 'index_pokemon_skins_on_pokemon_id'
   end
 
   create_table 'pokemon_translations', force: :cascade do |t|
