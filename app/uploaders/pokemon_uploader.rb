@@ -4,7 +4,7 @@ class PokemonUploader < Shrine
   def generate_location(io, context = {})
     folder = 'pokemons'
     name = super
-    [folder, name].compact.join('/')
+    [ENV['API_ENVIRONMENT'], folder, name].compact.join('/')
   end
 
   # def extract_metadata(io, context = {})
