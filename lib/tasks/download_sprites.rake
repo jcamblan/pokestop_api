@@ -13,7 +13,7 @@ namespace :download_sprites do
           uri = URI::HTTPS.build(
             host: 'raw.githubusercontent.com',
             path: "/ZeChrales/PogoAssets/master/pokemon_icons/#{image}"
-          )
+          ).to_s
           CreatePokemonImageJob.perform_later(pokemon, uri, gender, is_shiny)
         end
       end
