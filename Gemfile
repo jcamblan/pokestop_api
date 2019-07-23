@@ -20,6 +20,7 @@ gem 'pg'
 gem 'puma', '~> 3.11'
 gem 'rack-cors'
 gem 'rails', '~> 6.0.0.rc1'
+gem 'rest-client'
 gem 'shrine', '~> 2.0'
 gem 'sidekiq'
 
