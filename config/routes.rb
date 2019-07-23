@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   Clearance.configure do |config|
     config.routes = false
   end
-  
 
   use_doorkeeper
 
