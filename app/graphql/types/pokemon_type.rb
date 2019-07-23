@@ -15,6 +15,7 @@ module Types
     field :generation_id, ID, null: false
     field :category, String, null: true
     field :description, String, null: true
+    field :skins, [Types::PokemonSkinType], null: true
 
     field :max_cp, Float, null: true, description: 'Max CP value of pokemon' do
       argument :level, Int, required: false,
