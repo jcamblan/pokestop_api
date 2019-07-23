@@ -15,6 +15,7 @@ gem 'faraday'
 gem 'globalize'
 gem 'graphiql-rails'
 gem 'graphql'
+gem "marcel", "~> 0.3"
 gem 'paper_trail'
 gem 'pg'
 gem 'puma', '~> 3.11'
