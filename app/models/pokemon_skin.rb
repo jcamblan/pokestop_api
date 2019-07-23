@@ -12,6 +12,7 @@
 #  pokemon_id :bigint
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  alolan     :boolean          default(FALSE)
 #
 
 class PokemonSkin < ApplicationRecord
@@ -27,7 +28,7 @@ class PokemonSkin < ApplicationRecord
 
   # == Validations =============================================================
 
-  enumerize :kind, in: %i[normal special alolan]
+  enumerize :kind, in: %i[normal special]
   enumerize :gender, in: %i[neutral male female]
 
   # == Scopes ==================================================================
