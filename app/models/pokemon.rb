@@ -90,4 +90,18 @@ class Pokemon < ApplicationRecord
     hp = Utils::CPM_BY_LVL.dig(level) * (base_sta + ind_sta)
     hp.to_i
   end
+
+  def previous_nid
+    pokemons = Pokemon.order(nid: :asc).pluck(:nid)
+    return pokemons.last if pokemons.first == nid
+
+    pokemons[pokemons.index(nid) - 1]
+  end
+
+  def next_nid
+    pokemons = Pokemon.order(nid: :asc).pluck(:nid)
+    return pokemons.first if pokemons.last == nid
+
+    pokemons[pokemons.index(nid) + 1]
+  end
 end

@@ -16,6 +16,8 @@ module Types
     field :category, String, null: true
     field :description, String, null: true
     field :skins, [Types::PokemonSkinType], null: true
+    field :previous_nid, String, null: false
+    field :next_nid, String, null: false
 
     field :max_cp, Float, null: true, description: 'Max CP value of pokemon' do
       argument :level, Int, required: false,

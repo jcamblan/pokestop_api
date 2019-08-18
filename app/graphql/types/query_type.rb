@@ -29,7 +29,7 @@ module Types
     end
 
     field :pokemon, PokemonType, null: false do
-      argument :pokemon_id, ID, required: true, as: :id
+      argument :pokemon_nid, ID, required: true, as: :nid
     end
 
     field :research, ResearchType, null: false do
@@ -70,8 +70,8 @@ module Types
       scope
     end
 
-    def pokemon(id:)
-      Pokemon.find(id)
+    def pokemon(nid:)
+      Pokemon.find_by(nid: nid)
     end
 
     def all_researches(**args)
