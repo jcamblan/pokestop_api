@@ -58,8 +58,8 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.1, >= 2.1.4)
-    addressable (2.6.0)
-      public_suffix (>= 2.0.2, < 4.0)
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
     annotate (2.7.5)
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 13.0)
@@ -101,7 +101,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     doorkeeper (5.1.0)
       railties (>= 5)
-    down (4.8.1)
+    down (5.2.0)
       addressable (~> 2.5)
     email_validator (1.6.0)
       activemodel
@@ -160,7 +160,7 @@ GEM
       method_source (~> 0.9.0)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
-    public_suffix (3.1.1)
+    public_suffix (4.0.6)
     puma (3.12.1)
     rack (2.0.7)
     rack-cors (1.0.3)
@@ -206,9 +206,9 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     ruby_dep (1.5.0)
-    shrine (2.19.1)
+    shrine (3.3.0)
       content_disposition (~> 1.0)
-      down (~> 4.1)
+      down (~> 5.1)
     sidekiq (5.2.7)
       connection_pool (~> 2.2, >= 2.2.2)
       rack (>= 1.5.0)
@@ -264,7 +264,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 6.0.0.rc1)
   rest-client
-  shrine (~> 2.0)
+  shrine (~> 3.3)
   sidekiq
   spring
   spring-watcher-listen (~> 2.0.0)
